@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react'
+import { StatusBar, useColorScheme } from 'react-native'
 import SplashScreen from 'react-native-splash-screen'
 import { ThemeProvider } from 'styled-components'
 
 import { MainApplication } from './src'
-import { light } from './src/theme'
+import { dark, light } from './src/theme'
 
 const App: React.FC = () => {
+  const theme = useColorScheme()
   useEffect(() => {
     SplashScreen.hide()
   }, [])
 
   return (
-    <ThemeProvider theme={light}>
+    <ThemeProvider theme={theme === 'dark' ? dark : light}>
       <MainApplication />
+      <StatusBar
+        barStyle={theme === 'dark' ? 'light-content' : 'dark-content'}
+        backgroundColor={'transparent'}
+        translucent
+      />
     </ThemeProvider>
   )
 }

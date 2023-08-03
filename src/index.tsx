@@ -1,6 +1,7 @@
 import React from 'react'
-import { Home } from './screens/Home'
+
+import { MainRouters } from './routers'
 
 export const MainApplication: React.FC = () => {
-  return <Home />
+  return <MainRouters />
 }
