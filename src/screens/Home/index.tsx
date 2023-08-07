@@ -3,10 +3,8 @@ import { FlatList } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { useTheme } from 'styled-components'
-import { Plus } from 'lucide-react-native'
 
 import {
-  AddButton,
   Container,
   Header,
   Input,
@@ -16,6 +14,7 @@ import {
 } from './styled'
 import { Task, TaskItem } from '../../components/TaskItem'
 import { StackRouters } from '../../@types/routers'
+import { AddButton } from '../../components/AddButton'
 
 export const Home: React.FC = () => {
   const { colors, space } = useTheme()
@@ -44,10 +43,17 @@ export const Home: React.FC = () => {
     },
     {
       id: Math.random().toString(),
-      name: 'Desenvolver nova aplicação',
+      name: 'Desenvolver nova aplicação para android ',
       completed: 4,
       pending: 3,
       ignored: 10
+    },
+    {
+      id: Math.random().toString(),
+      name: 'Desenvolver nova aplicação para ios ',
+      completed: 4,
+      pending: 5,
+      ignored: 2
     }
   ])
 
@@ -65,9 +71,12 @@ export const Home: React.FC = () => {
             placeholderTextColor={colors.placeholder}
             cursorColor={colors.text}
           />
-          <AddButton activeOpacity={0.5} onPress={navigation}>
-            <Plus size={'50%'} color={colors.buttonText} />
-          </AddButton>
+          <AddButton
+            size={40}
+            bgColor={colors.secundary}
+            onPress={navigation}
+            activeOpacity={0.5}
+          />
         </TextFieldContainer>
       </Header>
       <FlatList

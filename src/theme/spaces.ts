@@ -12,11 +12,12 @@ export const screenDimensions = {
 
 export const fontSize = {
   title: Percet(4),
-  text: Percet(2.3),
-  taskname: Percet(2.6),
-  input: Percet(2.5),
-  buttonText: Percet(2.5),
-  icon: Percet(3)
+  icon: Percet(3),
+  headerTitle: Percet(2.7),
+  taskname: Percet(2.45),
+  input: Percet(2.4),
+  buttonText: Percet(2.4),
+  text: Percet(2.4)
 }
 
 export const space = {

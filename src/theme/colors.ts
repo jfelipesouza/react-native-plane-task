@@ -1,3 +1,5 @@
+import styled from 'styled-components'
+
 export const lightColors = {
   primary: '#006D77',
   secundary: '#4B9299',
@@ -7,27 +9,31 @@ export const lightColors = {
   backgroundCard: '#F4F4F4',
   inputBackground: '#F4F4F4',
   inputBorder: '#ECECEC',
-  placeholder: '#373737fa',
+  placeholder: '#37373799',
   inputText: '#373737',
   attention: '#E63946',
   warn: '#FFBD3E',
   success: '#006D77',
-  cardBorder: '#DDDDDD'
+  disabledButton: '#006d7799',
+  cardBorder: '#DDDDDD',
+  modal: '#555'
 }
 
 export const darkColors = {
   primary: '#006D77',
   secundary: '#4B9299',
-  text: '#DEDEDE',
+  text: '#FFF',
   buttonText: '#fff',
   background: '#36373B',
   backgroundCard: '#464B4D',
   inputBackground: '#5F6267',
   inputBorder: '#5F6267',
-  placeholder: '#DEDEDEaa',
+  placeholder: '#ffffffaa',
   attention: '#E63946',
   warn: '#FFBD3E',
   success: '#20AC9B',
-  inputText: '#DEDEDE',
-  cardBorder: '#5F6267'
+  disabledButton: '#20AC9Bb6',
+  inputText: '#fff',
+  cardBorder: '#5F6267',
+  modal: '#444'
 }

@@ -45,13 +45,3 @@ export const Input = styled.TextInput`
   border-color: ${({ theme }) => theme.colors.inputBorder};
   border-width: 2px;
 `
-
-export const AddButton = styled.TouchableOpacity`
-  width: ${({ theme }) => theme.screenDimensions.height * 0.06}px;
-  height: ${({ theme }) => theme.screenDimensions.height * 0.06}px;
-  border-radius: ${({ theme }) => theme.screenDimensions.height * 0.03}px;
-  background-color: ${({ theme }) => theme.colors.primary};
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-`

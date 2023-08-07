@@ -18,6 +18,7 @@ export const TaskName = styled.Text`
   font-size: ${({ theme }) => theme.fontSize.taskname}px;
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
+  flex: 9;
 `
 
 export const BottomContainer = styled.View`
@@ -37,4 +38,5 @@ export const Information = styled.Text`
 export const Button = styled.TouchableOpacity`
   width: ${({ theme }) => theme.fontSize.icon}px;
   height: ${({ theme }) => theme.fontSize.icon}px;
+  flex: 1;
 `

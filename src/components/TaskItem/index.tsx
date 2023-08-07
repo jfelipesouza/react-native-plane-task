@@ -1,4 +1,8 @@
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
+import { StackNavigationProp } from '@react-navigation/stack'
+import { useTheme } from 'styled-components'
+import { Trash2 } from 'lucide-react-native'
 import {
   BottomContainer,
   Button,
@@ -7,8 +11,7 @@ import {
   TaskName,
   TopContainer
 } from './styled'
-import { useTheme } from 'styled-components'
-import { Trash2 } from 'lucide-react-native'
+import { StackRouters } from '../../@types/routers'
 
 export type Task = {
   id: String
@@ -24,15 +27,18 @@ type TaskItemProp = {
 
 export const TaskItem: React.FC<TaskItemProp> = ({ task }) => {
   const { colors } = useTheme()
+  const { navigate } = useNavigation<StackNavigationProp<StackRouters>>()
+
+  const navigation = () => {
+    navigate('task', { id: task.id.toString(), taskName: task.name })
+  }
+
   return (
-    <Container>
+    <Container onPress={navigation}>
       <TopContainer>
-        <TaskName>{task.name}</TaskName>
+        <TaskName numberOfLines={2}>{task.name}</TaskName>
         <Button>
-          <Trash2
-            /* fill={colors.attention} */ color={colors.attention}
-            size={'100%'}
-          />
+          <Trash2 color={colors.attention} size={'100%'} />
         </Button>
       </TopContainer>
       <BottomContainer>

@@ -9,6 +9,7 @@ import {
 import { Home } from '../screens/Home'
 import { CreateTask } from '../screens/CreateTask'
 import { StackRouters } from '../@types/routers'
+import { Task } from '../screens/Task'
 
 const { Navigator, Screen } = createStackNavigator<StackRouters>()
 
@@ -17,6 +18,7 @@ export const MainRouters: React.FC = () => {
     <NavigationContainer>
       <Navigator screenOptions={StackConfig}>
         <Screen name="home" component={Home} />
+        <Screen name="task" component={Task} />
         <Screen name="createTask" component={CreateTask} />
       </Navigator>
     </NavigationContainer>
