@@ -5,5 +5,9 @@ module.exports = {
       plugins: [['transform-remove-console', { exclude: ['error', 'warn'] }]]
     }
   },
-  plugins: ['babel-plugin-styled-components', 'react-native-reanimated/plugin']
+  plugins: [
+    'babel-plugin-styled-components',
+    'react-native-reanimated/plugin',
+    ['@babel/plugin-proposal-decorators', { legacy: true }]
+  ]
 }
