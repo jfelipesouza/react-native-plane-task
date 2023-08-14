@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { ScrollView, Keyboard, View } from 'react-native'
+import { ScrollView, Keyboard, View, TextInput } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 import { useTheme } from 'styled-components'
 
 import { HeaderBackNavigation } from '../../components/HeaderBackNavigation'
@@ -17,18 +18,22 @@ import {
   SaveButton,
   SaveButtonText
 } from './styled'
-
-type Task = {
-  name: string
-  key: string
-}
+import { createNewTask } from '../../services/databases/Methods/CreateTask'
+import { Step } from '../../@types/task'
 
 export const CreateTask: React.FC = () => {
-  const [steps, setSteps] = useState<Task[]>([])
+  const [steps, setSteps] = useState<Step[]>([])
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [saveEnabled, setSaveEnabled] = useState(false)
 
-  const { colors, space, fontSize } = useTheme()
   const modalRef = useRef<ModalContainerRefProps>(null)
   const scrollRef = useRef<ScrollView>(null)
+  const titleRef = useRef<TextInput>(null)
+  const descriptionRef = useRef<TextInput>(null)
+
+  const { colors, space, fontSize } = useTheme()
+  const navigation = useNavigation()
 
   const openModalDrawer = () => {
     modalRef.current?.changeModalStatus()
@@ -38,11 +43,20 @@ export const CreateTask: React.FC = () => {
     Keyboard.dismiss()
     const name = modalRef.current?.captureInputValue() as string
     if (name !== '') {
-      setSteps(prev => [...prev, { name, key: Math.random().toString() }])
+      setSteps(prev => [
+        ...prev,
+        {
+          name,
+          status: 'pendente',
+          create_at: new Date(),
+          update_at: new Date()
+        }
+      ])
       modalRef.current?.changeModalStatus()
     }
     scrollRef.current?.scrollToEnd({ animated: true })
   }
+
   const cancelStep = () => {
     Keyboard.dismiss()
     modalRef.current?.changeModalStatus()
@@ -55,9 +69,38 @@ export const CreateTask: React.FC = () => {
     })
   }
 
+  const createTask = async () => {
+    try {
+      await createNewTask(title.trim(), description.trim(), steps)
+      navigation.goBack()
+    } catch (error) {
+      console.log(`Tivemos um erro:\n ${error}`)
+    }
+  }
+
+  const handleVerifyIfCanSave = () => {
+    if (saveEnabled === true) {
+      if (
+        steps.length < 1 ||
+        title.trim() === '' ||
+        description.trim() === ''
+      ) {
+        setSaveEnabled(false)
+      }
+    } else {
+      if (
+        steps.length > 0 &&
+        title.trim() !== '' &&
+        description.trim() !== ''
+      ) {
+        setSaveEnabled(true)
+      }
+    }
+  }
+
   useEffect(() => {
-    console.log(steps)
-  }, [steps])
+    handleVerifyIfCanSave()
+  }, [steps.length, title, description])
 
   return (
     <>
@@ -73,7 +116,12 @@ export const CreateTask: React.FC = () => {
             <Input
               placeholderTextColor={colors.placeholder}
               placeholder={'Qual o nome da tarefa?'}
-              multiline
+              multiline={false}
+              onChangeText={(newTitle: string) => setTitle(newTitle)}
+              onSubmitEditing={() => {
+                descriptionRef.current?.focus()
+              }}
+              ref={titleRef}
             />
           </TextField>
           <TextField>
@@ -84,6 +132,10 @@ export const CreateTask: React.FC = () => {
               placeholderTextColor={colors.placeholder}
               cursorColor={colors.text}
               multiline
+              onChangeText={(newDescription: string) =>
+                setDescription(newDescription)
+              }
+              ref={descriptionRef}
             />
           </TextField>
 
@@ -103,11 +155,12 @@ export const CreateTask: React.FC = () => {
               <StepItem
                 name={item.name}
                 deleteAction={() => deleteStep(index)}
-                key={item.key}
+                key={item._id}
               />
             ))}
           </View>
-          <SaveButton disabled={steps.length < 1}>
+
+          <SaveButton onPress={createTask} disabled={!saveEnabled}>
             <SaveButtonText>Salvar</SaveButtonText>
           </SaveButton>
         </ScrollView>

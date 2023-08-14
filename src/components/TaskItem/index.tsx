@@ -12,38 +12,31 @@ import {
   TopContainer
 } from './styled'
 import { StackRouters } from '../../@types/routers'
+import { TaskItem as TaskItemProp } from '../../@types/task'
 
-export type Task = {
-  id: String
-  name: string
-  completed: number
-  pending: number
-  ignored: number
+type TaskItemParams = {
+  task: TaskItemProp
 }
 
-type TaskItemProp = {
-  task: Task
-}
-
-export const TaskItem: React.FC<TaskItemProp> = ({ task }) => {
+export const TaskItem: React.FC<TaskItemParams> = ({ task }) => {
   const { colors } = useTheme()
   const { navigate } = useNavigation<StackNavigationProp<StackRouters>>()
 
   const navigation = () => {
-    navigate('task', { id: task.id.toString(), taskName: task.name })
+    navigate('task', { id: task._id.toString(), taskName: task.title })
   }
 
   return (
     <Container onPress={navigation}>
       <TopContainer>
-        <TaskName numberOfLines={2}>{task.name}</TaskName>
+        <TaskName numberOfLines={2}>{task.title}</TaskName>
         <Button>
           <Trash2 color={colors.attention} size={'100%'} />
         </Button>
       </TopContainer>
       <BottomContainer>
         <Information style={{ color: colors.success }}>
-          {task.completed} completed
+          {task.complete} completed
         </Information>
         <Information style={{ color: colors.warn }}>
           {task.pending} pending

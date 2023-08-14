@@ -6,6 +6,7 @@ export const Container = styled.SafeAreaView`
   padding: 0px ${({ theme }) => theme.space.md}px;
   padding-top: ${({ theme: { screenDimensions } }) =>
     screenDimensions.statusbarH! + 2}px;
+  gap: ${({ theme }) => theme.space.md}px;
 `
 
 export const Header = styled.View`
@@ -14,7 +15,7 @@ export const Header = styled.View`
   margin-top: ${({ theme: { screenDimensions } }) =>
     screenDimensions.height * 0.02}px;
   gap: ${({ theme }) => theme.space.md}px;
-  margin-bottom: ${({ theme }) => theme.space.lg}px;
+  //margin-bottom: ${({ theme }) => theme.space.md}px;
 `
 
 export const Title = styled.Text`
@@ -27,6 +28,7 @@ export const Subtitle = styled.Text`
   font-weight: 700;
   color: ${({ theme }) => theme.colors.text};
 `
+
 export const TextFieldContainer = styled.View`
   width: 100%;
   flex-direction: row;

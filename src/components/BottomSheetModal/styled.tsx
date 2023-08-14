@@ -6,7 +6,7 @@ export const Container = styled(Animated.View)`
   bottom: 0;
   background-color: ${({ theme }) => theme.colors.modal};
   height: ${({ theme: { screenDimensions } }) =>
-    screenDimensions.height * 0.3}px;
+    screenDimensions.height * 0.4}px;
   width: ${({ theme: { screenDimensions } }) => screenDimensions.width}px;
 
   border-top-left-radius: ${({ theme }) => theme.space.lg}px;
@@ -20,7 +20,7 @@ export const Inline = styled.View`
   flex-direction: row;
   width: 100%;
   gap: ${({ theme }) => theme.space.md}px;
-  top: ${({ theme }) => theme.space.lg}px;
+  top: ${({ theme }) => theme.space.xlg}px;
 `
 export const TextField = styled.TextInput`
   background-color: ${({ theme }) => theme.colors.inputBackground};
@@ -29,7 +29,15 @@ export const TextField = styled.TextInput`
   padding: ${({ theme }) => `${theme.space.md}px ${theme.space.md}px`};
   color: ${({ theme }) => theme.colors.inputText};
 `
+export const InputContainer = styled.View`
+  gap: 10px;
+`
 
+export const InputCount = styled.Text`
+  align-self: flex-end;
+  color: ${({ theme }) => theme.colors.buttonText};
+  font-size: ${({ theme }) => theme.fontSize.text}px;
+`
 type ActionButtonProps = {
   type?: 'confirm' | 'cancel'
 }

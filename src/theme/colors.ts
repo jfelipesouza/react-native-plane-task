@@ -1,5 +1,3 @@
-import styled from 'styled-components'
-
 export const lightColors = {
   primary: '#006D77',
   secundary: '#4B9299',

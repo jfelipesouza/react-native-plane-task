@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native'
 import { StackNavigationProp } from '@react-navigation/stack'
 import { Pencil, ChevronLeft } from 'lucide-react-native'
@@ -19,12 +19,16 @@ export const HeaderBackNavigation: React.FC<HeaderBackNavigationProps> = ({
   const { colors, fontSize, space } = useTheme()
   const { goBack } = useNavigation<StackNavigationProp<StackRouters>>()
 
+  const navigation = () => {
+    goBack()
+  }
+
   return (
     <Container>
       <LeftContainer>
         <Button
           style={{ transform: [{ translateX: -space.xs * 1.5 }] }}
-          onPress={goBack}
+          onPress={navigation}
         >
           <ChevronLeft color={colors.text} size={fontSize.icon * 1.4} />
         </Button>
