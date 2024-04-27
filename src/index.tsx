@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { StatusBar } from "react-native";
 import { ThemeProvider } from "styled-components";
 
-import { AppNavigation } from "./routers";
-import themes from "./themes";
 import { useMMKVString } from "react-native-mmkv";
+import { AppNavigation } from "./routers";
 import { TOKEN } from "./services/enums/tokens";
+import themes from "./themes";
 
 const MyApp = () => {
   const [theme, setTheme] = useState(themes.light);
@@ -34,3 +34,4 @@ const MyApp = () => {
 };
 
 export { MyApp as App };
+

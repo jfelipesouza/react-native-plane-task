@@ -12,6 +12,7 @@ const lightColors = {
   warn: "#e84707",
   success: "#008080",
   cardBackground: "#c6c6c6",
+  placeholder:"#333333b5"
 };
 
 const darkColors = {
@@ -25,6 +26,7 @@ const darkColors = {
   warn: "#FFBD3E",
   success: "#20AC9B",
   cardBackground: "#464B4D",
+  placeholder:"#dddddd9e"
 };
 
 const sizing = {
@@ -32,8 +34,8 @@ const sizing = {
   sm: Rf(1.2),
   md: Rf(1.5),
   lg: Rf(1.8),
-  xlg: Rf(2.5),
-  xxlg: Rf(3.5),
+  xlg: Rf(2.2),
+  xxlg: Rf(3),
 };
 
 const fontSize = {

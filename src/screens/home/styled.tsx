@@ -1,14 +1,12 @@
-import styled from "styled-components/native";
 import { StatusBar } from "react-native";
-import { Plus } from "lucide-react-native";
-import { TaskItem } from "../../components/TaskCard";
+import styled from "styled-components/native";
 
 export const Container = styled.View`
   flex: 1;
   background-color: ${({ theme }) => theme.colors.background};
   padding: ${({ theme }) => `${theme.sizing.xs}px ${theme.sizing.lg}px`};
   padding-top: ${({ theme }) =>
-    `${theme.sizing.xs + StatusBar.currentHeight!}px`};
+    `${theme.sizing.sm + StatusBar.currentHeight!}px`};
   gap: ${({ theme }) => theme.sizing.md}px;
 `;
 
@@ -28,7 +26,7 @@ export const InlineContainer = styled.View`
 
 export const HeaderContainer = styled.View`
   flex-direction: column;
-  gap: ${({ theme }) => theme.sizing.sm}px;
+  gap: ${({ theme }) => theme.sizing.md}px;
 `;
 
 export const SearchInput = styled.TextInput`

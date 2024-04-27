@@ -1,15 +1,22 @@
+import { useNavigation } from "@react-navigation/native";
 import { Plus } from "lucide-react-native";
 import React, { useState } from "react";
 import { useTheme } from "styled-components/native";
 
 import { TaskCard, TaskItem } from "../../components/TaskCard";
 import { ThemeButton } from "../../components/ThemeButton";
-import { HOME_MOCK } from "../../services/mocks/home";
 import * as HomeStyles from "./styled";
 
 const HomeScreen: React.FC = () => {
   const { colors, fontSize, sizing } = useTheme();
-  const [data, setData] = useState<TaskItem[]>(HOME_MOCK);
+  const [data, setData] = useState<TaskItem[]>([]);
+
+  const navigation = useNavigation();
+
+
+  const handleNavigateToCreateScreen = ()=>{
+    navigation.navigate("create" as never)
+  }
 
   return (
     <HomeStyles.Container>
@@ -23,7 +30,7 @@ const HomeScreen: React.FC = () => {
             placeholder="Encontre a sua tarefa"
             placeholderTextColor={colors.text}
           />
-          <HomeStyles.AddButton>
+          <HomeStyles.AddButton onPressIn={handleNavigateToCreateScreen} >
             <Plus color={"white"} fontSize={fontSize.input} />
           </HomeStyles.AddButton>
         </HomeStyles.InlineContainer>
